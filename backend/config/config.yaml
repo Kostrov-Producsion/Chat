@@ -2,8 +2,8 @@ secret_key: 'django-insecure-gfu=mf#!+0am+p$a4^3i=^tz*17f71tma7p!i$ildo36b5uw@&'
 
 postgres:
   database: Storage
-  user: Jony
-  password: jony8889
+  user: JonyDB
+  password: jonydb876
   host: 127.0.0.1
   port: 5432
 
