@@ -25,7 +25,7 @@ services:
       - POSTGRES_DB=Storage
 
   nginx:
-    build: /root/django-on-docker/nginx
+    build: /project/Chat/backend/nginx
     volumes:
       - static_volume/:/usr/src/app/static/
       - media_volume/:/usr/src/app/media/
