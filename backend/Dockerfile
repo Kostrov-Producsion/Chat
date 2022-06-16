@@ -7,8 +7,10 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update && apk add python3-dev \
                           gcc \
                           libc-dev \
-                          libffi-dev \
-                          apt-get install sudo
+                          libffi-dev 
+RUN apt-get update && \
+      apt-get -y install sudo
+                          
 RUN sudo apt-get install python3-psycopg2
 
 RUN pip install --upgrade pip
