@@ -1,7 +1,6 @@
 channels==3.0.4
 channels-redis==2.4.1
 coreapi==2.3.3
-cryptography==3.4.7
 daphne==3.0.2
 Django==3.2.4
 django-bootstrap3==12.0.3
