@@ -1,5 +1,5 @@
 channels==3.0.4
-channels-redis==2.4.1
+channels-redis
 coreapi==2.3.3
 daphne==3.0.2
 Django==3.2.4
