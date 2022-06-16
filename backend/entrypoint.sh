@@ -1,4 +1,4 @@
-if [ "$DATABASE" = "postgres" ]
+if [ "$DATABASE" = "Storage" ]
 then
     echo "Waiting for postgres..."
 
