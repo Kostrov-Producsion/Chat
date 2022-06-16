@@ -10,7 +10,7 @@ RUN apk update && apk add python3-dev \
                           libffi-dev \
                           sudo
                           
-RUN sudo install python3-psycopg2
+RUN sudo apt-get install python3-psycopg2
 
 RUN pip install --upgrade pip
 COPY ./req.txt .
