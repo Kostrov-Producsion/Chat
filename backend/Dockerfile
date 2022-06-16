@@ -8,7 +8,7 @@ RUN apk update && apk add python3-dev \
                           gcc \
                           libc-dev \
                           libffi-dev \
-                          python3-psycopg2 instead
+                          postgresql-dev
                          
 
 RUN pip install --upgrade pip
