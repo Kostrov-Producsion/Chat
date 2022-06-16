@@ -8,7 +8,7 @@ RUN apk update && apk add python3-dev \
                           gcc \
                           libc-dev \
                           libffi-dev \
-                          apt-get -y install sudo
+                          apt-get install sudo
 RUN sudo apt-get install python3-psycopg2
 
 RUN pip install --upgrade pip
