@@ -16,7 +16,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-       - POSTGRES_USER=JonyDB
+      - POSTGRES_USER=JonyDB
       - POSTGRES_PASSWORD=jonydb876
       - POSTGRES_DB=Storage
 
