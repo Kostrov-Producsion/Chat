@@ -22,5 +22,3 @@ WORKDIR /usr/src/app
 COPY ./entrypoint.sh .
 
 COPY . .
-
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
