@@ -23,8 +23,8 @@ RUN mkdir -p /usr/src/app/static/
 RUN mkdir -p /usr/src/app/media/
 WORKDIR /usr/src/app
 
-COPY ./docker-entrypoint.sh .
+COPY ./entrypoint.sh .
 
 COPY . /usr/src/app
 
-ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
