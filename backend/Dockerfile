@@ -8,7 +8,10 @@ RUN apk update && apk add python3-dev \
                           gcc \
                           libc-dev \
                           libffi-dev \
-                          postgresql-dev
+                          postgresql-dev \
+                          zlib libjpeg-turbo-dev libpng-dev \
+                          freetype-dev lcms2-dev libwebp-dev \
+                          harfbuzz-dev fribidi-dev tcl-dev tk-dev
                          
 
 RUN pip install --upgrade pip
