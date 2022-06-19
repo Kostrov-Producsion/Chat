@@ -20,8 +20,11 @@ RUN pip install --no-cache-dir -r req.txt
 
 RUN mkdir -p /usr/src/app/
 RUN mkdir -p /usr/src/app/static/
+RUN mkdir -p /usr/src/app/media/
 WORKDIR /usr/src/app
 
 COPY ./entrypoint.sh .
 
-COPY . .
+COPY . /usr/src/app
+
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
