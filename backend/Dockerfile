@@ -23,9 +23,9 @@ RUN mkdir -p /usr/src/app/static/
 RUN mkdir -p /usr/src/app/media/
 WORKDIR /usr/src/app
 
-COPY ./entrypoint.sh .
+COPY ./docker-entrypoint.sh .
 
 COPY . /usr/src/app
 
-RUN chmod +x ./entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+RUN chmod +x ./docker-entrypoint.sh
+ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
