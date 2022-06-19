@@ -25,7 +25,7 @@ services:
       - POSTGRES_DB=Storage
 
   nginx:
-    build: /root/Chat/nginx
+    build: /root/Chat/backend/nginx
     volumes:
       - static_volume/:/usr/src/app/static/
       - media_volume/:/usr/src/app/media/
