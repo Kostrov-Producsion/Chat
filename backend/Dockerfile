@@ -27,4 +27,5 @@ COPY ./entrypoint.sh .
 
 COPY . /usr/src/app
 
+RUN chmod +x ./entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
