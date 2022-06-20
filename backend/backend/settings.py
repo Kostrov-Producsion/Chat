@@ -127,7 +127,7 @@ DATABASES = {
         'NAME': 'Storage',
         'USER': 'JonyDB',
         'PASSWORD': 'jonydb876',
-        'HOST': "0.0.0.0",
+        'HOST': 'db',
         'PORT': '5432'
     }
 }
