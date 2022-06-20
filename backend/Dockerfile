@@ -4,7 +4,7 @@ ENV TZ Europe/Moscow
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apk update && apk add python3-dev musl-dev\
+RUN apk update && apk add python3-dev \
                           gcc \
                           libc-dev \
                           libffi-dev \
