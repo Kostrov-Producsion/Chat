@@ -12,8 +12,8 @@ then
 fi
 
 # python manage.py flush --no-input
-python manage.py makemigrations backend
-python manage.py migrate backend
+python manage.py makemigrations web
+python manage.py migrate web
 python manage.py runserver 0.0.0.0:8000
 
 exec "$@"
