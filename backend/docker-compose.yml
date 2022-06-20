@@ -1,16 +1,16 @@
-version: '3'
+version: '3.8'
 
 services:
   web:
     build: ./
-    command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/
       - static_volume/:/usr/src/app/static/
       - media_volume/:/usr/src/app/media/
     restart: always
-    expose:
-      - 8000
+    ports:
+      - 8000:8000
     depends_on:
       - db
 
@@ -24,16 +24,16 @@ services:
       - POSTGRES_PASSWORD=jonydb876
       - POSTGRES_DB=Storage
 
-  nginx:
-    build: /root/Chat/backend/nginx
-    volumes:
-      - static_volume/:/usr/src/app/static/
-      - media_volume/:/usr/src/app/media/
-    restart: always
-    ports:
-      - 1337:80
-    depends_on:
-      - web
+#   nginx:
+#     build: /root/Chat/backend/nginx
+#     volumes:
+#       - static_volume/:/usr/src/app/static/
+#       - media_volume/:/usr/src/app/media/
+#     restart: always
+#     ports:
+#       - 1337:80
+#     depends_on:
+#       - web
 
 volumes:
   postgres_data:
