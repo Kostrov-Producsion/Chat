@@ -27,9 +27,7 @@ with open(CONFIG_PATH) as file:
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gfu=mf#!+0am+p$a4^3i=^tz*17f71tma7p!i$ildo36b5uw@&'
-
-# SECRET_KEY = config['secret_key']
+SECRET_KEY = config['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,6 +110,11 @@ CHANNEL_LAYERS = {
 #     }
 # }
 
+ADMIN = {
+    "login": config['admin']['login'],
+    "password": config['admin']['password']
+}
+
 AUTH_USER_MODEL = 'chat.Person' # указываем что данные о юзер модели, берем из нашей кастомной
 
 AUTHENTICATION_BACKENDS = [ # указываем на нашу кастомную модель аутентификации пользователя
@@ -124,27 +127,16 @@ AUTHENTICATION_BACKENDS = [ # указываем на нашу кастомну�
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Storage',
-        'USER': 'JonyDB',
-        'PASSWORD': 'jonydb876',
-        'HOST': 'db',
-        'PORT': '5432'
+        'NAME': config['postgres']['database'],
+        'USER': config['postgres']['user'],
+        'PASSWORD': config['postgres']['password'],
+        'HOST': config['postgres']['host'],
+        'PORT': config['postgres']['port'],
+        'TEST': {
+                    'NAME': 'test_' + config['postgres']['database'],
+                },
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': config['postgres']['database'],
-#         'USER': config['postgres']['user'],
-#         'PASSWORD': config['postgres']['password'],
-#         'HOST': config['postgres']['host'],
-#         'PORT': config['postgres']['port'],
-#         'TEST': {
-#                     'NAME': 'test_' + config['postgres']['database'],
-#                 },
-#     }
-# }
 
 EMAIL_HOST = config['email']['host']
 EMAIL_PORT = config['email']['port']
