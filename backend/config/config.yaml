@@ -1,5 +1,6 @@
 secret_key: 'django-insecure-gfu=mf#!+0am+p$a4^3i=^tz*17f71tma7p!i$ildo36b5uw@&'
 
+
 postgres:
   database: Storage
   user: JonyDB
@@ -13,3 +14,8 @@ email:
   port: 465
   user: KostrovProductionServer
   password: aeoowbdfukhmqerb
+
+
+admin:
+  login: jony
+  password: jony8889
