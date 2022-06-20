@@ -13,7 +13,7 @@ services:
       - media_volume/:/usr/src/app/media/
     restart: always
     ports:
-    - "8080:8080"
+    - "8000:8000"
     depends_on:
       - db
 
