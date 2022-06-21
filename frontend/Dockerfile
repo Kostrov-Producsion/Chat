@@ -4,14 +4,14 @@ RUN npm install -g npm@8.12.2
 ENV TZ Europe/Moscow
 
 # устанавливаем простой HTTP-сервер для статики
-RUN npm install --global http-server
+RUN npm install -g http-server
 
 # делаем каталог 'app' текущим рабочим каталогом
 RUN mkdir -p /app/
 WORKDIR /app
 
 # копируем оба 'package.json' и 'package-lock.json' (если есть)
-COPY package*.json ./
+COPY ./package*.json ./
 
 # устанавливаем зависимости проекта
 RUN npm install
