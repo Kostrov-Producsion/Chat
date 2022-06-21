@@ -1,0 +1,9 @@
+version: "3"
+  server:
+    build: server/
+    command: npm run build
+    volumes:
+      - server/:/app/
+    restart: always
+    ports:
+      - "8000:8000"
