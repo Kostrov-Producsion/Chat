@@ -1,4 +1,5 @@
 FROM node:16.15.1-alpine
+RUN npm install -g npm@8.12.2
 
 ENV TZ Europe/Moscow
 
