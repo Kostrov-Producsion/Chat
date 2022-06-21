@@ -4,7 +4,7 @@ RUN npm install -g npm@8.12.2
 ENV TZ Europe/Moscow
 
 # устанавливаем простой HTTP-сервер для статики
-RUN npm install -g http-server
+RUN npm install --global http-server
 
 # делаем каталог 'app' текущим рабочим каталогом
 RUN mkdir -p /app/
