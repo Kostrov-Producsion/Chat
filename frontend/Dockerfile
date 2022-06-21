@@ -1,9 +1,12 @@
-FROM node:lts-alpine
+FROM node:16.15.1-alpine
+
+ENV TZ Europe/Moscow
 
 # устанавливаем простой HTTP-сервер для статики
 RUN npm install -g http-server
 
 # делаем каталог 'app' текущим рабочим каталогом
+RUN mkdir -p /app/
 WORKDIR /app
 
 # копируем оба 'package.json' и 'package-lock.json' (если есть)
@@ -13,10 +16,9 @@ COPY package*.json ./
 RUN npm install
 
 # копируем файлы и каталоги проекта в текущий рабочий каталог (т.е. в каталог 'app')
-COPY . .
+COPY . ./app
 
 # собираем приложение для production с минификацией
 RUN npm run build
 
-EXPOSE 8080
 CMD [ "http-server", "dist" ]
