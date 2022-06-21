@@ -11,7 +11,7 @@ RUN mkdir -p /app/
 WORKDIR /app
 
 # копируем оба 'package.json' и 'package-lock.json' (если есть)
-COPY package*.json .
+COPY package*.json ./
 
 # устанавливаем зависимости проекта
 RUN npm install
