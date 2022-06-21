@@ -1,9 +1,16 @@
 version: "3"
-  server:
-    build: server/
-    command: npm run build
-    volumes:
-      - server/:/app/
-    restart: always
-    ports:
-      - "8000:8000"
+  services:
+    app:
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      working_dir: /srv/app
+      volumes:
+        - ./app:/srv/app
+        - /srv/app/node_modules
+      stdin_open: true
+      environment:
+        - HOST=0.0.0.0
+        - CHOKIDAR_USEPOLLING=true
+      ports:
+        - 8080:8080
