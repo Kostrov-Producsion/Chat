@@ -100,7 +100,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [(config['channel']['host'], 8080)],
         },
     },
 }
@@ -188,8 +188,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:8000",
-    "http://localhost:8080"
+    config['cors']['host']
 ]
 
 # Default primary key field type
