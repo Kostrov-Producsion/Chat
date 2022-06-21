@@ -23,6 +23,6 @@ RUN npm install axios
 COPY . ./app
 
 # собираем приложение для production с минификацией
-RUN npm run build
+# RUN npm run build
 
 CMD [ "http-server", "dist" ]
