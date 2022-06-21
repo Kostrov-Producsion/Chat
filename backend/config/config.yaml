@@ -19,3 +19,11 @@ email:
 admin:
   login: jony
   password: jony
+  
+  
+channel:
+  host: '5.53.124.177'
+  
+  
+cors:
+  host: '5.53.124.177:8080'
