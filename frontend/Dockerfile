@@ -1,22 +1,18 @@
-FROM node:lts-alpine
+FROM ubuntu:latest
 
-# устанавливаем простой HTTP-сервер для статики
-RUN npm install -g http-server
+ENV DEBIAN_FRONTEND noninteractive
 
-# делаем каталог 'app' текущим рабочим каталогом
-WORKDIR /app
+RUN apt-get update && apt-get install -y nodejs npm && rm -rf /var/lib/apt/lists/*
+RUN npm install -g yarn
 
-# копируем оба 'package.json' и 'package-lock.json' (если есть)
-COPY package*.json ./
+WORKDIR /srv/app
+COPY app/package*.json ./
+RUN yarn global add @vue/cli
+RUN yarn install
 
-# устанавливаем зависимости проекта
-RUN npm install
-
-# копируем файлы и каталоги проекта в текущий рабочий каталог (т.е. в каталог 'app')
-COPY . .
-
-# собираем приложение для production с минификацией
-RUN npm run build
+# Bundle app source
+COPY ./app .
 
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+
+CMD [ "yarn", "serve"]
