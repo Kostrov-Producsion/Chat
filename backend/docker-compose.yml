@@ -23,17 +23,6 @@ services:
       - POSTGRES_PASSWORD=jonydb876
       - POSTGRES_DB=Storage
 
-#   nginx:
-#     build: /root/Chat/backend/nginx
-#     volumes:
-#       - static_volume/:/usr/src/app/static/
-#       - media_volume/:/usr/src/app/media/
-#     restart: always
-#     ports:
-#       - 1337:80
-#     depends_on:
-#       - web
-
 volumes:
   postgres_data:
   static_volume:
