@@ -1,5 +1,4 @@
 FROM node:16.15.1-alpine
-RUN npm install -g npm@8.12.2
 
 ENV TZ Europe/Moscow
 
@@ -15,6 +14,7 @@ COPY package*.json ./
 
 # устанавливаем зависимости проекта
 RUN npm install
+RUN npm install -g npm@8.12.2
 
 RUN npm install vuex --save 
 RUN npm install axios
