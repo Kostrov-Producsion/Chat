@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
-from backend.backend.settings import ADMIN
-from backend.chat.models import Person
+from backend.settings import ADMIN
+from chat.models import Person
 
 
 class Command(BaseCommand):
