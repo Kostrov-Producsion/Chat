@@ -197,7 +197,7 @@ class Friend(AbstractModel):
 class CheckedKeys(models.Model):
     user_id = models.IntegerField(unique=True, verbose_name='пользователь')
     key = models.IntegerField(verbose_name='ключ')
-    thread = models.IntegerField(verbose_name='поток')
+    thread = models.IntegerField(verbose_name='поток', max_length=100)
 
 
 class CustomAccountManager(BaseUserManager, models.Manager):
