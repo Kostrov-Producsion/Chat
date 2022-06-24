@@ -12,18 +12,18 @@ services:
     restart: always
     ports:
     - "8000:8000"
-    depends_on:
-      - db
+#     depends_on:
+#       - db
 
-  db:
-    image: postgres:11.11-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    restart: always
-    environment:
-      - POSTGRES_USER=JonyDB
-      - POSTGRES_PASSWORD=jonydb876
-      - POSTGRES_DB=Storage
+#   db:
+#     image: postgres:11.11-alpine
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data/
+#     restart: always
+#     environment:
+#       - POSTGRES_USER=JonyDB
+#       - POSTGRES_PASSWORD=jonydb876
+#       - POSTGRES_DB=Storage
 
 volumes:
   postgres_data:
