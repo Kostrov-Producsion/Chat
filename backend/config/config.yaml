@@ -6,7 +6,7 @@ postgres:
   user: jonydb
   password: jonydb876
   host: 80.249.145.16
-  port: 5432
+  port: 6979
 
 
 email:
