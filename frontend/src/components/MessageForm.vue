@@ -617,18 +617,23 @@
             gallery(target) {
                 var item = target.closest('.gallery-item');
                 if (item) {
-                    item.classList.toggle('full');
                     var image = item.querySelector('img');
-                    if (this.mobile) {
-                        if (image.offsetHeight / 3 < 100) {
-                            image.style.top = image.offsetHeight + 'px';
+                    if (item.classList.toggle('full')) {
+                        if (this.mobile) {
+                            if (image.offsetHeight / 3 < 100) {
+                                image.style.top = image.offsetHeight / 2 + 'px';
+                                image.style.left = 0;
+                            } else {
+                                image.style.width = 80 + '%';
+                                image.style.top = 5 + '%';
+                                image.style.left = (document.body.offsetWidth - image.offsetWidth) / 2 + 'px';
+                            }
                         } else {
-                            image.style.top = image.offsetHeight / 3 + 'px';
+                            image.style.top = (document.body.offsetHeight - image.offsetHeight) + 'px';
+                            image.style.left = (document.body.offsetWidth - image.offsetWidth) / 2 + 'px';
                         }
-                        image.style.left = 0;
                     } else {
-                        image.style.top = (document.body.offsetHeight - image.offsetHeight) + 'px';
-                        image.style.left = (document.body.offsetWidth - image.offsetWidth) / 2 + 'px';
+                        image.removeAttribute('style');
                     }
                 }
             },
