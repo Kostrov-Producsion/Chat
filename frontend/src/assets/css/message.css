@@ -771,6 +771,7 @@ video {
     text-align: center; }
   .media-files-chat [class^="med"] [type="radio"],
   .media-files-chat [class*=" med"] [type="radio"] {
+    -webkit-border-radius:0;
     outline: none;
     border-bottom: 1px solid #C4C4C4;
     cursor: pointer;
