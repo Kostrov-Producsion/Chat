@@ -703,11 +703,15 @@
             this.wsPerson.onmessage = e => {
                 var data = JSON.parse(e.data);
                 var count_possible = document.querySelectorAll('.count__possible_friends');
+                var chat_label = document.querySelector('.chat-label');
                 var group = data.data.group;
                 var action = data.data.action;
                 var chat_json = data.data.data;
 
                 if (group === 'friend') {
+                    if (chat_label) {
+                        chat_label.remove();
+                    }
                     if (action === 'create_friend') {
                         var possible_friend = data.data.friend_id;
                         var user_c = document.getElementById('user-' + possible_friend);
@@ -863,7 +867,9 @@
                     }
                 } else if (group === 'chat') {
                     var initiator_user = data.data.user_id;
-                    var chat_label = document.querySelector('.chat-label');
+                    if (chat_label) {
+                        chat_label.remove();
+                    }
                     if (initiator_user === this.user_id) {
                         if (chat_json[0]) {
                             this.wsMessages.close();
@@ -874,9 +880,6 @@
 
                         } else {
                             this.CreateChat(chat_json);
-                            if (chat_label) {
-                                chat_label.remove();
-                            }
 
                             this.wsMessages.close();
                             this.wsChat.close();
@@ -887,9 +890,6 @@
                     } else {
                         if (chat_json.id) {
                             this.CreateChat(chat_json);
-                            if (chat_label) {
-                                chat_label.remove();
-                            }
                         }
                     }
                 }
