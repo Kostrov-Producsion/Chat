@@ -863,6 +863,7 @@
                     }
                 } else if (group === 'chat') {
                     var initiator_user = data.data.user_id;
+                    var chat_label = document.querySelector('.chat-label');
                     if (initiator_user === this.user_id) {
                         if (chat_json[0]) {
                             this.wsMessages.close();
@@ -873,6 +874,9 @@
 
                         } else {
                             this.CreateChat(chat_json);
+                            if (chat_label) {
+                                chat_label.remove();
+                            }
 
                             this.wsMessages.close();
                             this.wsChat.close();
@@ -883,6 +887,9 @@
                     } else {
                         if (chat_json.id) {
                             this.CreateChat(chat_json);
+                            if (chat_label) {
+                                chat_label.remove();
+                            }
                         }
                     }
                 }
