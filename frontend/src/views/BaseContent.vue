@@ -709,8 +709,9 @@
                 var chat_json = data.data.data;
 
                 if (group === 'friend') {
-                    if (chat_label) {
-                        chat_label.remove();
+                    var chat_label_f = document.querySelector('.chat-label');
+                    if (chat_label_f) {
+                        chat_label_f.remove();
                     }
                     if (action === 'create_friend') {
                         var possible_friend = data.data.friend_id;
@@ -866,10 +867,11 @@
                         this.update_name_chat(chat_json);
                     }
                 } else if (group === 'chat') {
-                    var initiator_user = data.data.user_id;
-                    if (chat_label) {
-                        chat_label.remove();
+                    var chat_label_c = document.querySelector('.chat-label');
+                    if (chat_label_c) {
+                        chat_label_c.remove();
                     }
+                    var initiator_user = data.data.user_id;
                     if (initiator_user === this.user_id) {
                         if (chat_json[0]) {
                             this.wsMessages.close();
