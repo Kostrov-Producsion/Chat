@@ -42,6 +42,7 @@
     transition: all 0.8s;
     font-family: sans-serif;
     letter-spacing: 1px;
+    -webkit-border-radius: 0;
 }
 
 #id_name_reg,
