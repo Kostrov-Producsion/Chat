@@ -68,7 +68,7 @@
             </div>
         </div>
         <div v-else>
-            <div class="chat-label">Нет ни одного начатого диалога</div>
+            <div class="chat-label chat">Нет ни одного начатого диалога</div>
         </div>
 
         <div class="chat-box-list" style="display: none" id="chat-id">
