@@ -34,7 +34,7 @@
         </div>
     </div>
     <div v-else>
-        <div class="chat-label">Здесь будут показаны Ваши друзья</div>
+        <div class="chat-label friend">Здесь будут показаны Ваши друзья</div>
     </div>
     </div>
 </template>
