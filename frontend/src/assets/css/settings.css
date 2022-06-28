@@ -49,6 +49,7 @@ h3 {
     letter-spacing: 1px;
     color: #626262;
     margin-bottom: 2%;
+    -webkit-border-radius: 0;
 }
 
 label {
