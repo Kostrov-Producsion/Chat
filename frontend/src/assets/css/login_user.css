@@ -43,6 +43,7 @@
     transition: all 0.3s;
     font-family: sans-serif;
     letter-spacing: 1px;
+    -webkit-border-radius: 0;
 }
 
 .bi.bi-eye-slash {
