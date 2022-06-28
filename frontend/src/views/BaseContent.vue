@@ -709,7 +709,7 @@
                 var chat_json = data.data.data;
 
                 if (group === 'friend') {
-                    var chat_label_f = document.querySelector('.chat-label');
+                    var chat_label_f = document.querySelector('.chat-label.friend');
                     if (chat_label_f) {
                         chat_label_f.remove();
                     }
@@ -867,7 +867,7 @@
                         this.update_name_chat(chat_json);
                     }
                 } else if (group === 'chat') {
-                    var chat_label_c = document.querySelector('.chat-label');
+                    var chat_label_c = document.querySelector('.chat-label.chat');
                     if (chat_label_c) {
                         chat_label_c.remove();
                     }
