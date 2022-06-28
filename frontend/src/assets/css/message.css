@@ -841,7 +841,6 @@ video {
     max-width: 100%;
     border-radius: 8px;
     box-shadow: 0 0 16px #333;
-    transition: all 1.5s ease;
 }
 .media_content_div .media:hover {
   box-shadow: 0 0 32px #333;
