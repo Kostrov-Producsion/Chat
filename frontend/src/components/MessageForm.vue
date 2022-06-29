@@ -270,6 +270,14 @@
                 content.appendChild(img);
                 this.blockMedia.appendChild(clone);
                 this.str_image += data_photo.data[0] + ',';
+
+                var media_1 = document.getElementById('med-1');
+                var media_photo = document.getElementById('photo-media');
+                var clone_media_photo = media_photo.cloneNode(true);
+                clone_media_photo.setAttribute('id', 'media-photo-' + data_photo.data[0]);
+                var img_media = clone_media_photo.querySelector('img');
+                img_media.src = this.urlPhoto + '/media/' + data_photo.data[1];
+                media_1.appendChild(clone_media_photo);
             };
 
             this.wsVideo.onmessage = e => {
@@ -291,6 +299,14 @@
                 source.src = this.urlPhoto + '/media/' + data_video[1];
                 this.blockMedia.appendChild(clone);
                 this.str_video += data_video[0] + ',';
+
+                var media_2 = document.getElementById('med-2');
+                var media_video = document.getElementById('video-media');
+                var clone_media_video = media_video.cloneNode(true);
+                clone_media_video.setAttribute('id', 'media-video-' + data_video[0]);
+                var source_media = clone_media_video.querySelector('source');
+                source_media.src = this.urlPhoto + '/media/' + data_video[1];
+                media_2.appendChild(clone_media_video);
             };
         },
         methods: {
