@@ -435,26 +435,7 @@
                 btnCreate.style.display = 'block';
             },
             changeStyle(event) {
-                var date = new Date;
-                date.setDate(date.getDate() + 30);
-                date = date.toUTCString();
                 var checked = event.target.closest('.checkbox').querySelector('input[type="checkbox"]');
-                var parent = event.target.closest('.style-page');
-                var checkbox = parent.querySelectorAll('input[type="checkbox"]');
-                for (var i = 0; i < checkbox.length; i++) {
-                    checkbox[i].checked = false;
-                }
-                checked.checked = true;
-                var body = document.body;
-                body.removeAttribute('class');
-                body.classList.add(checked.value);
-                if (checked.value === 'night') {
-                    document.cookie = 'style=1; expires='+date;
-                } else if (checked.value === 'warm') {
-                    document.cookie = 'style=2; expires='+date;
-                } else {
-                    document.cookie = 'style=0; expires='+date;
-                }
 
                 this.wsSetting.send(JSON.stringify({
                     action: 'person',
