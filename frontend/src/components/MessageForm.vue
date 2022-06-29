@@ -620,13 +620,17 @@
                     var image = item.querySelector('img');
                     if (item.classList.toggle('full')) {
                         if (this.mobile) {
-                            if (image.offsetHeight / 3 < 100) {
+                            if (image.offsetWidth - image.offsetHeight > 0) {
                                 image.style.top = image.offsetHeight / 2 + 'px';
                                 image.style.left = 0;
                             } else {
                                 image.style.width = 80 + '%';
-                                image.style.top = 5 + '%';
                                 image.style.left = (document.body.offsetWidth - image.offsetWidth) / 2 + 'px';
+                                if (image.offsetHeight > 500) {
+                                    image.style.top = (image.offsetHeight / 10) / 2 + 'px';
+                                } else {
+                                    image.style.top = image.offsetHeight / 4 + 'px';
+                                }
                             }
                         } else {
                             image.style.top = (document.body.offsetHeight - image.offsetHeight) + 'px';
