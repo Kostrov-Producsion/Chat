@@ -894,6 +894,31 @@
                             this.CreateChat(chat_json);
                         }
                     }
+                } else if (group === 'settings') {
+                    if (chat_json.action === 'person') {
+                        if (chat_json.field === 'style') {
+                            var checkbox = document.querySelector('.style-page').querySelectorAll('input[type="checkbox"]');
+                            for (var i = 0; i < checkbox.length; i++) {
+                                checkbox[i].checked = false;
+                            }
+                            var style = document.querySelector('input[data-style="'+ chat_json.text +'"]');
+                            style.checked = true;
+                            var body = document.body;
+                            body.removeAttribute('class');
+                            body.classList.add(style.value);
+
+                            var date = new Date;
+                            date.setDate(date.getDate() + 30);
+                            date = date.toUTCString();
+                            if (style.value === 'night') {
+                                document.cookie = 'style=1; expires='+date;
+                            } else if (style.value === 'warm') {
+                                document.cookie = 'style=2; expires='+date;
+                            } else {
+                                document.cookie = 'style=0; expires='+date;
+                            }
+                        }
+                    }
                 }
             };
         },
