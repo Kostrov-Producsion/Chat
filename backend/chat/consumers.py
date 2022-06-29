@@ -611,6 +611,17 @@ class AsyncPermissionConsumer(AsyncConsumer):
             "type": "websocket.send",
             "text": action
         })
+        
+        await self.channel_layer.group_send(
+            'user_' + str(self.scope['user'].id),
+            {
+                "type": "send_json",
+                "data": {
+                    "group": "settings",
+                    "data": input_data
+                }
+            }
+        )
 
     @database_sync_to_async
     def person(self, slug, field, text):
