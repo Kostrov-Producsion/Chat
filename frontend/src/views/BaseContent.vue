@@ -61,6 +61,7 @@
                     @outWSSetting="wsSetting=$event"
                     @outAvatar="updateAvatar"
                     @getOut="getOutSetting"
+                    @cancelFriendFunc="cancelFriend=$event"
                 />
             </div>
         </div>
@@ -89,6 +90,7 @@
                                 @outWSPhotoSetting="wsPhotoSetting=$event"
                                 @outWSSetting="wsSetting=$event"
                                 @outAvatar="updateAvatar"
+                                @cancelFriendFunc="cancelFriend=$event"
                             />
                         </div>
                     </div>
@@ -356,7 +358,8 @@
                 wsSetting: null,
                 wsPhotoMessage: null,
                 wsVideo: null,
-                exit: true
+                exit: true,
+                cancelFriend: null
             }
         },
         components: {Mobile_Messages, Mobile_Friends, Emoji, MessageForm, Messages, BlockTopChat, Users, Friends, Possible, SettingsProfile, ListChats },
@@ -916,6 +919,82 @@
                                 document.cookie = 'style=2; expires='+date;
                             } else {
                                 document.cookie = 'style=0; expires='+date;
+                            }
+                        } else if (chat_json.field === 'name') {
+                            this.content.person.name = chat_json.text;
+                        } else if (chat_json.field === 'email') {
+                            this.content.person.email = chat_json.text;
+                        } else if (chat_json.field === 'quote') {
+                            this.content.person.quote = chat_json.text;
+                        }
+                    } else if (chat_json.action === 'permission') {
+                        console.log(chat_json);
+                        var parent = document.querySelector('.permissions');
+                        var listFriendsChecked = parent.querySelector('.list-check-user');
+                        var listFriends = parent.querySelector('.list-friends');
+                        var checkbox_p = parent.querySelectorAll('.checkbox-permission');
+                        var checkbox_hid = parent.querySelectorAll('.hidden-friend-checkbox');
+                        var btnUpdate = parent.querySelector('.btn-settings.update');
+                        var btnCreate = parent.querySelector('.btn-settings.create');
+                        var checkActivateFriend = parent.parentElement.querySelector('.checkbox-permission.friend');
+                        var checkUser = parent.querySelector('.check-user');
+                        if (chat_json.FriendHid) {
+                            var listHidFriend = chat_json.FriendHid.split(',');
+                        }
+
+                        if (chat_json.txt_message_ban !== 'Скрыть от некоторых друзей'
+                            && chat_json.txt_message_ban !== null) {
+                            for (var a = 0; a < checkbox_p.length - 1; a++) {
+                                checkbox_p[a].checked = false;
+                            }
+
+                            var target = parent.querySelector('input[value="' + chat_json.txt_message_ban + '"]');
+                            target.checked = true;
+                        } else if (chat_json.txt_message_ban === null) {
+                            if (listFriendsChecked.querySelectorAll('.check-user').length === listHidFriend.length
+                                || checkActivateFriend.checked === false) {
+                                checkActivateFriend.checked = false;
+                                listFriendsChecked.innerHTML = '';
+                                btnUpdate.style.display = 'none';
+                                btnCreate.style.display = 'none';
+                                listFriends.style.display = 'none';
+                                for (var i = 0; i < checkbox_hid.length; i++) {
+                                    checkbox_hid[i].checked = false;
+                                }
+                            } else {
+                                for (var i = 0; i < checkbox_hid.length; i++) {
+                                    if (listHidFriend.includes(checkbox_hid[i].value)) {
+                                        checkbox_hid[i].checked = false;
+                                        var HidFriend = listFriendsChecked.querySelector('div[data-id="' + checkbox_hid[i].value + '"]');
+                                        HidFriend.remove();
+                                    }
+                                }
+                            }
+                        } else if (chat_json.txt_message_ban === 'Скрыть от некоторых друзей') {
+                            listFriendsChecked.innerHTML = ''; // очищаем прошлый список
+                            for (var i = 0; i < checkbox_hid.length; i++) {
+                                if (listHidFriend.includes(checkbox_hid[i].value)) {
+                                    checkbox_hid[i].checked = true;
+                                    var clone = checkUser.cloneNode(true);
+                                    clone.removeAttribute('style');
+                                    var a = clone.querySelector('a');
+                                    clone.setAttribute('data-id', checkbox_hid[i].value);
+                                    a.innerHTML = checkbox_hid[i].getAttribute('data-name');
+                                    var btn_x = clone.querySelector('.bi.bi-x');
+                                    btn_x.addEventListener('click', this.cancelFriend);
+                                    listFriendsChecked.appendChild(clone);
+                                }
+                            }
+                            // проверяем был выбор или нет
+                            if (listHidFriend.length !== 0) {
+                                btnUpdate.style.display = 'block';
+                                btnCreate.style.display = 'none';
+                                listFriends.style.display = 'none';
+                                checkActivateFriend.checked = true;
+                            } else {
+                                btnCreate.style.display = 'none';
+                                listFriends.style.display = 'none';
+                                checkActivateFriend.checked = false;
                             }
                         }
                     }
