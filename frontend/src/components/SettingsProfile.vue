@@ -160,7 +160,7 @@
             permission: Object,
             friends: Array
         },
-        emits: ['outWSPhotoSetting', 'outWSSetting', 'outAvatar', 'getOut'],
+        emits: ['outWSPhotoSetting', 'outWSSetting', 'outAvatar', 'getOut', 'cancelFriendFunc'],
         data: function () {
             return {
                 urlPhoto: this.$store.getters.getServerUrl,
@@ -207,6 +207,7 @@
 
             this.$emit('outWSPhotoSetting', this.wsPhotoSetting);
             this.$emit('outWSSetting', this.wsSetting);
+            this.$emit('cancelFriendFunc', this.cancelFriend);
         },
         updated() {
             this.slug = this.person.slug;
