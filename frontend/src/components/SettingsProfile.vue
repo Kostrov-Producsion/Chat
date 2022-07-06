@@ -86,15 +86,15 @@
             <div v-else class="permissions">
                 <label>Отправка сообщений</label>
                 <label class="checkbox">
-                    <input class="checkbox-permission" type="checkbox" value="Видно всем" @click="changeSettings" checked>
+                    <input class="checkbox-permission" type="checkbox" value="Доступно всем" @click="changeSettings" checked>
                     <div class="checkbox__text">Доступно всем</div>
                 </label>
                 <label class="checkbox">
-                    <input class="checkbox-permission" type="checkbox" value="Скрыть от всех" @click="changeSettings">
+                    <input class="checkbox-permission" type="checkbox" value="Не беспокоить" @click="changeSettings">
                     <div class="checkbox__text">Не беспокоить</div>
                 </label>
                 <label class="checkbox">
-                    <input class="checkbox-permission" type="checkbox" value="Видно только друзьям" @click="changeSettings">
+                    <input class="checkbox-permission" type="checkbox" value="Доступно только друзьям" @click="changeSettings">
                     <div class="checkbox__text">Доступно только друзьям</div>
                 </label>
                 <label class="checkbox">
