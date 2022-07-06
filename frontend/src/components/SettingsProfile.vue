@@ -257,34 +257,11 @@
             changeSettings(event) {
                 var target = event.target;
                 var parent;
-                var checkbox;
-                var listFriendsChecked;
-                var btnUpdate;
-                var checkboxFriend;
-                var checkActivateFriend;
-
                 if (target.closest('.permissions')) {
                     parent = target.closest('.permissions');
-                    checkbox = parent.querySelectorAll('.checkbox-permission');
-                    for (var a = 0; a < checkbox.length - 1; a++) {
-                        checkbox[a].checked = false;
-                    }
-                    target.checked = true;
                     parent.setAttribute('data-permission', target.value);
-                    if (target.value === 'Видно всем') {
-                        listFriendsChecked = parent.querySelector('.list-check-user');
-                        btnUpdate = parent.querySelector('.btn-settings.update');
-                        listFriendsChecked.innerHTML = '';
-                        btnUpdate.style.display = 'none';
-                        checkActivateFriend = parent.querySelector('.checkbox-permission.friend');
-                        checkboxFriend = parent.querySelectorAll('.hidden-friend-checkbox');
-                        for (var w = 0; w < checkboxFriend.length; w++) {
-                            checkboxFriend[w].checked = false;
-                        }
-                        checkActivateFriend.checked = false;
-                    }
                 }
-                this.saveSettings();// после установки какой либо настройки, сохраняем ее через вызов функции
+                this.saveSettings();
             },
             visibleFriend(event) {
                 var target = event.target;
@@ -299,8 +276,6 @@
                     listFriends = parent.querySelector('.list-friends');
                     btnCreate = parent.querySelector('.btn-settings.create');
                     btnUpdate = parent.querySelector('.btn-settings.update');
-                    var checkActivateFriend = parent.parentElement.querySelector('.checkbox-permission.friend');
-                    var checkbox = parent.querySelectorAll('.hidden-friend-checkbox');
                     var listFriendsChecked = parent.querySelector('.list-check-user');
                     var friends = listFriendsChecked.querySelectorAll('.check-user');
                     var arr = [];
@@ -310,21 +285,11 @@
                         btnCreate.style.display = 'block';
                         btnUpdate.style.display = 'none';
                     } else {
-                        listFriends.style.display = 'none';
-                        btnCreate.style.display = 'none';
-                        checkActivateFriend.checked = false;
-                        btnUpdate.style.display = 'none';
-                        for (var i = 0; i < checkbox.length; i++) {
-                            if (checkbox[i].checked) {
-                                checkbox[i].checked = false;
-                            }
-                        }
                         if (friends) {
                             for (var i = 0; i < friends.length; i++) {
                                 arr.push(friends[i].getAttribute('data-id'));
                             }
                         }
-                        listFriendsChecked.innerHTML = '';
                         parent.setAttribute('data-friends', arr);
                         this.saveSettings();
                     }
@@ -332,13 +297,7 @@
             },
             cancelFriend(event) {
                 var target = event.target;
-                var parent = target.closest('.hidden-friend-block');
-                var listFriendsChecked = parent.querySelector('.list-check-user');
-                var checkbox = parent.querySelectorAll('.hidden-friend-checkbox');
                 var checkUser = target.closest('.check-user');
-                var btnUpdate = parent.querySelector('.btn-settings.update');
-                var checkActivateFriend = parent.parentElement.querySelector('.checkbox-permission.friend');
-
                 var mainParent;
 
                 // проверяем область удаления
@@ -346,61 +305,19 @@
                     mainParent = target.closest('.permissions');
                     mainParent.setAttribute('data-friends', checkUser.getAttribute('data-id'));
                 }
-
-                // после удаления из шаблона, так же снимаем отметку в списке друзей
-                listFriendsChecked.removeChild(checkUser);
-                var checkUserActive = listFriendsChecked.querySelectorAll('.check-user');
-                if (checkUserActive.length === 0) {
-                    checkActivateFriend.checked = false;
-                    btnUpdate.style.display = 'none';
-                    for (var i = 0; i < checkbox.length; i++) {
-                        checkbox[i].checked = false;
-                    }
-                } else {
-                    for (var i = 0; i < checkbox.length; i++) {
-                        if (checkbox[i].value === checkUser.getAttribute('data-id')) {
-                            checkbox[i].checked = false;
-                        }
-                    }
-                }
                 this.saveSettings();
             },
             checkboxFriends(event) {
                 var target = event.target;
                 var parent = target.closest('.hidden-friend-block');
-                var listFriendsChecked = parent.querySelector('.list-check-user');
-                var listFriends = parent.querySelector('.list-friends');
                 var checkbox = parent.querySelectorAll('.hidden-friend-checkbox');
-                var checkUser = parent.querySelector('.check-user');
-                var btnCreate = parent.querySelector('.btn-settings.create');
-                var btnUpdate = parent.querySelector('.btn-settings.update');
                 var checkActivateFriend = parent.parentElement.querySelector('.checkbox-permission.friend');
-
-                listFriendsChecked.innerHTML = ''; // очищаем прошлый список
+                
                 var arr = [];
                 for (var i = 0; i < checkbox.length; i++) {
                     if (checkbox[i].checked) { // считаем выбранных
                         arr.push(checkbox[i].value); // и записываем их в массив
-                        // обрабатываем выбранных друзей для дальнейшего показа их в шаблоне
-                        var clone = checkUser.cloneNode(true);
-                        clone.removeAttribute('style');
-                        var a = clone.querySelector('a');
-                        clone.setAttribute('data-id', checkbox[i].value);
-                        a.innerHTML = checkbox[i].getAttribute('data-name');
-                        var btn_x = clone.querySelector('.bi.bi-x');
-                        btn_x.addEventListener('click', this.cancelFriend);
-                        listFriendsChecked.appendChild(clone);
                     }
-                }
-                // проверяем был выбор или нет
-                if (arr.length !== 0) {
-                    btnUpdate.style.display = 'block';
-                    btnCreate.style.display = 'none';
-                    listFriends.style.display = 'none';
-                } else {
-                    btnCreate.style.display = 'none';
-                    listFriends.style.display = 'none';
-                    checkActivateFriend.checked = false;
                 }
                 var mainParent;
 
@@ -450,24 +367,14 @@
                 if (this.id_name.value !== this.id_name.getAttribute('data-name')) {
                     field = 'name';
                     text = this.id_name.value;
-                    this.name_base.innerHTML = this.id_name.value;
-                    this.id_name.setAttribute('data-name', this.id_name.value);
                 }
                 if (this.id_email.value !== this.id_email.getAttribute('data-email')) {
                     field = 'email';
                     text = this.id_email.value;
-                    this.id_email.setAttribute('data-email', this.id_email.value);
                 }
                 if (this.id_quote.value !== this.id_quote.getAttribute('data-quote')) {
                     field = 'quote';
                     text = this.id_quote.value;
-                    this.quote_base.innerHTML = this.id_quote.value;
-                    if (this.id_quote.value !== '') {
-                        this.quote_base.style.display = 'block';
-                    } else {
-                        this.quote_base.style.display = 'none';
-                    }
-                    this.id_quote.setAttribute('data-quote', this.id_quote.value);
                 }
 
                 if (this.id_name.value !== '') {
