@@ -560,6 +560,10 @@
                 var photo = data.data.photo;
                 var video = data.data.video;
                 var permission = data.data.permission;
+                
+                // закрываем старый чат
+                this.wsMessages.close();
+                this.wsChat.close();
 
                 this.innerMessage.setAttribute('data-chat_id', chat.id);
 
