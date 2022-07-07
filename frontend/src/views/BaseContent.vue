@@ -932,7 +932,6 @@
                             this.content.person.quote = chat_json.text;
                         }
                     } else if (chat_json.action === 'permission') {
-                        console.log(chat_json);
                         var parent = document.querySelector('.permissions');
                         var listFriendsChecked = parent.querySelector('.list-check-user');
                         var listFriends = parent.querySelector('.list-friends');
