@@ -143,8 +143,6 @@
                 if (scroll_btn) {
                     scroll_btn.style.display = 'none';
                 }
-                this.wsMessages.close();
-                this.wsChat.close();
                 this.wsConnect.send(JSON.stringify({
                     chat_id: chat_id
                 }));
