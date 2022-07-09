@@ -94,7 +94,7 @@
         props: {
             getCookie: Function
         },
-        emits: ['registration'],
+        emits: ['registration', 'wsRegister'],
         data: function () {
             return {
                 login: null,
@@ -108,13 +108,18 @@
                 fade: true,
                 eyes: true,
                 eyes2: true,
-                mobile: false
+                mobile: false,
+                wsRegister: null,
+                urlServer: this.$store.getters.getServerUrl.replace('http://', '')
             }
         },
         created() {
             if (document.body.offsetWidth < 1000) {
-                  this.mobile = true
-              }
+                this.mobile = true
+            }
+            this.wsRegister = new WebSocket('ws://' + this.urlServer + '/ws/register/');
+            this.wsRegister.onopen = () => console.log('connect Register');
+            this.$emit('wsRegister', this.wsRegister);
         },
         methods: {
             Registration () {
@@ -158,9 +163,16 @@
                     }, 1000)
                 }
             },
-            ResReg (user) {
-                this.$emit('registration', user);
-                if (!user) {
+            ResReg (data) {
+                if (data.person) {
+                    this.wsRegister.send(JSON.stringify({
+                          text: data.person
+                    }));
+                    console.log('Register response');
+                }
+
+                this.$emit('registration', data.user);
+                if (!data.user) {
                     this.fade = true;
                     this.show = false;
                     this.error = true;
