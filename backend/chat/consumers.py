@@ -762,6 +762,37 @@ class AsyncConnectConsumer(AsyncJsonWebsocketConsumer):
                 'permission': permission_serializer
             }
 
+    
+class RegisterConsumer(AsyncConsumer):
 
+    async def websocket_connect(self, message):
+        await self.send({
+            "type": "websocket.accept"
+        })
+
+    async def websocket_receive(self, message):
+        data = message['text']
+        person = json.loads(data)
+
+        users = await self.person_list(person['text']['slug'])
+        for user_id in users:
+            await self.channel_layer.group_send(
+                'user_' + str(user_id),
+                {
+                    "type": "send_json",
+                    "data": {
+                        "group": "new_person",
+                        "data": person
+                    }
+                }
+            )
+
+    @database_sync_to_async
+    def person_list(self, slug):
+        users = models.Person.objects.all().exclude(slug__exact=slug)
+        arr = []
+        for user in users:
+            arr.append(user.id)
+        return arr
 
 
