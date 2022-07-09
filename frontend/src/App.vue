@@ -36,6 +36,7 @@
           <Registration
               v-bind:get-cookie="getCookie"
               @registration="Auth"
+              @wsRegister="wsRegister=$event"
           />
         </div>
       </div>
@@ -72,6 +73,7 @@
           wsFriendAdd: null,
           wsConnect: null,
           wsPerson: null,
+          wsRegister: null,
           funcSelectedNav: Function
         }
     },
@@ -90,6 +92,12 @@
         }
       ).then(response => (this.is_valid = true)
       ).catch(error => console.log(error));
+    },
+    updated() {
+        if (this.wsRegister && (this.is_auth === true || this.is_password === true)) {
+            this.wsRegister.close();
+            console.log('Register close');
+        }
     },
     methods: {
       AuthHandler (auth) {
