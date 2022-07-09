@@ -130,7 +130,7 @@
                           password: this.password,
                           name: this.name
                     }
-                ).then(response => this.ResReg(response.data.user)
+                ).then(response => this.ResReg(response.data)
                 ).catch(errors => (this.error = true))
             },
             next () {
