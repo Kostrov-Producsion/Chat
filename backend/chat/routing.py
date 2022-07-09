@@ -10,5 +10,6 @@ websocket_urlpatterns = [
     path('ws/friend/', consumers.AsyncAddFriendConsumer.as_asgi()),
     path('ws/permission/', consumers.AsyncPermissionConsumer.as_asgi()),
     path('ws/connect/', consumers.AsyncConnectConsumer.as_asgi()),
-    path('ws/person/', consumers.AsyncPersonConsumer.as_asgi())
+    path('ws/person/', consumers.AsyncPersonConsumer.as_asgi()),
+    path('ws/register/', consumers.RegisterConsumer.as_asgi())
 ]
