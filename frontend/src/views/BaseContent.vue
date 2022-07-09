@@ -1001,6 +1001,38 @@
                             }
                         }
                     }
+                } else if (group === 'new_person') {
+                    var new_user = document.getElementById('user-2').cloneNode(true);
+
+                    new_user.setAttribute('id', 'user-' + chat_json.text.id);
+                    var new_user_checkbox = new_user.querySelector('input');
+                    new_user_checkbox.setAttribute('data-user-id', chat_json.text.id);
+                    var new_user_avatar = new_user.querySelector('img');
+                    new_user_avatar.src = this.urlPhoto + '/static/default_avatar.jpg';
+                    var new_user_name = new_user.querySelector('.person-info p');
+                    new_user_name.innerText = chat_json.text.name;
+
+                    var new_user_menu = new_user.querySelector('.person-menu');
+                    new_user_menu.onclick = this.BTNs;
+                    var new_user_message_btn = new_user.querySelector('.message-btn');
+                    new_user_message_btn.setAttribute('data-user', chat_json.text.id);
+                    new_user_message_btn.onclick = this.write_message;
+                    var new_user_sub_btn = new_user.querySelector('.subscribe-btn');
+                    new_user_sub_btn.setAttribute('data-user', chat_json.text.id);
+                    new_user_sub_btn.onclick = this.SendingToAdd;
+                    new_user_sub_btn.style.display = 'inline-block';
+
+                    var new_user_unsub_btn = new_user.querySelector('.unsubscribe-btn');
+                    new_user_unsub_btn.setAttribute('data-friend-user', chat_json.text.id);
+                    new_user_unsub_btn.onclick = this.DeleteFriend;
+                    new_user_unsub_btn.style.display = 'none';
+                    var new_user_possible_friends = new_user.querySelector('.info-subscribe.possible_friends');
+                    new_user_possible_friends.style.display = 'none';
+                    var new_user_waiting_confirmations = new_user.querySelector('.info-subscribe.waiting_confirmations');
+                    new_user_waiting_confirmations.style.display = 'none';
+
+                    var tabs_3 = document.getElementById('tabs-3');
+                    tabs_3.insertBefore(new_user, tabs_3.firstElementChild);
                 }
             };
         },
