@@ -1,23 +1,16 @@
 from rest_framework.response import Response
-from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics, permissions, viewsets
 from rest_framework import filters
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from django.views.generic.base import View
-from django.shortcuts import redirect
-from django.views.generic.edit import FormView
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
-from django.contrib.contenttypes.models import ContentType
 from .models import (
-    Person, Chat, Photo, Video, Friend, Permission, CheckedKeys
+    Person, Chat, Friend, Permission, CheckedKeys
 )
 
 from .serializers import (
-    PersonSerializers, FriendSerializers, PhotoSerializers,
-    VideoSerializes, ChatSerializers, PermissionSerializers, MessageSerializer,
+    PersonSerializers, FriendSerializers,
+    ChatSerializers, PermissionSerializers,
     TokenSerializer
 )
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -50,7 +43,7 @@ class RegisterView(generics.CreateAPIView):
             )
             obj.name = data['name']
             obj.save()
-            return Response({'user': True})
+            return Response({'user': True, 'person': self.serializer_class(obj).data})
         else:
             return Response({'user': False})
 
