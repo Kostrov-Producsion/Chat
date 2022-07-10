@@ -1536,8 +1536,6 @@
             get_message_message (e) {
                 var user = this.message_box_user.getAttribute('data-user');
                 var data = JSON.parse(e.data);
-                
-                console.log(data);
 
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].author['id'] === parseInt(user)) {
