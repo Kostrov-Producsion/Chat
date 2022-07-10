@@ -102,12 +102,12 @@
                         this.quantity_start = 10;
                         this.quantity_finish = 20;
                     }
-                    this.quantity_start += 10;
-                    this.quantity_finish += 10;
                     this.wsMessages.send(JSON.stringify({
                         quantity_start: this.quantity_start,
                         quantity_finish: this.quantity_finish
                     }));
+                    this.quantity_start += 10;
+                    this.quantity_finish += 10;
                 }
                 if (this.innerMessage.scrollHeight - this.innerMessage.scrollTop > 2500) {
                     this.scroll_btn.style.display = 'block';
