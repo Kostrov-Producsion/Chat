@@ -128,7 +128,6 @@
         },
         methods: {
             outWsMF (data) {
-                console.log('outWsMF');
                 this.wsPhotoMessage = data.wsPhotoMessage;
                 this.wsVideo = data.wsVideo;
 
