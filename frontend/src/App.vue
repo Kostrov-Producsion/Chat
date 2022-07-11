@@ -15,6 +15,7 @@
             @WebSocketClose="closeWS"
             @funcSelectedNav="funcSelectedNav=$event"
             @getOut="getOut"
+            v-bind:trigger-w-s="triggerWS"
       />
     </div>
     <div v-else>
@@ -74,6 +75,7 @@
           wsConnect: null,
           wsPerson: null,
           wsRegister: null,
+          triggerWS: true,
           funcSelectedNav: Function
         }
     },
@@ -102,6 +104,7 @@
     methods: {
       AuthHandler (auth) {
           this.is_valid = auth;
+          this.triggerWS = auth;
           this.success_reg = false;
           this.change_password = false;
       },
@@ -144,7 +147,7 @@
         this.wsVideo = data.wsVideo;
       },
       getOut(data) {
-        this.is_valid = data;
+        this.triggerWS = data;
         this.wsPhotoSetting.close();
         this.wsSetting.close();
         this.wsPhotoMessage.close();
@@ -152,8 +155,11 @@
         this.wsMessages.close();
         this.wsChat.close();
         this.wsFriendAdd.close();
-        this.wsConnect.close();
         this.wsPerson.close();
+        this.wsConnect.close();
+        this.wsConnect.onclose = () => {
+          this.is_valid = data;
+        }
       },
       ActivateStyle() {
         var style = parseInt(this.getCookie());
