@@ -1,6 +1,5 @@
 <template>
     <div class="container base-container">
-        <button @click="btnOff">off Person</button>
         <div v-if="mobile">
             <div class="list-chats" :style="navChat ? 'display: block' : 'display: none'">
                 <ListChats
@@ -433,9 +432,6 @@
             this.wsPerson.onmessage = e => this.messPerson(e);
         },
         methods: {
-            btnOff () {
-               this.wsPerson.close();
-            },
             outWsMF (data) {
                 this.wsPhotoMessage = data.wsPhotoMessage;
                 this.wsVideo = data.wsVideo;
