@@ -1097,7 +1097,6 @@
             },
             restartWS () {
                 console.log('restart Sockets');
-                console.log(this.triggerWS);
                 if (this.triggerWS) {
                     this.wsPhotoSetting.close();
                     this.wsSetting.close();
