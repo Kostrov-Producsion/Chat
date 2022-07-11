@@ -22,7 +22,9 @@ admin:
   
   
 channel:
-  host: '5.53.124.177'
+  ip: '5.53.124.177'
+  host: 'kostrov-production.ru'
+  
   
   
 cors:
