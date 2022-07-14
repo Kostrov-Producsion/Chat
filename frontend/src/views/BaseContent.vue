@@ -1290,12 +1290,14 @@
                     }
                 }
 
+                $('.person-menu').css({transition: '1s', opacity:'0'});
                 $('.checkPeople').css({transition: '2s', 'display': 'inline'});
                 $('.allPeopleBox').css({transition: '2s', 'margin-right': '3%'});
                 $('#CreateChat').fadeOut(1000);
                 setTimeout(function () {
                     $('#SaveChat').fadeIn(1000);
                     $('#CancelChat').fadeIn(1000);
+                    $('.person-menu').css({display:'none'});
                 }, 1000);
             },
             CloseChecked() {
@@ -1313,6 +1315,7 @@
                     }
                 }
 
+                $('.person-menu').css({transition: '0s', opacity:'1', display:'inline-block'});
                 $('.checkPeople').css({transition: '2s', 'display': 'none'});
                 $('.allPeopleBox').css({transition: '2s', 'margin-right': '2%'});
                 $('#CancelChat').fadeOut(1000);
