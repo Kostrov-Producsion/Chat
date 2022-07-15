@@ -972,10 +972,12 @@
                     chat_name.innerText = chat_name.innerText.slice(0, 150)  + '...'
                 }
 
+                var window_block_media = document.querySelector('.media-files-chat-body');
                 var media_1 = document.getElementById('med-1');
                 var media_2 = document.getElementById('med-2');
                 var media_photo = document.getElementById('photo-media');
                 var media_video = document.getElementById('video-media');
+                window_block_media.style.display = 'none';
                 media_1.innerHTML = '';
                 media_2.innerHTML = '';
                 for (var i = 0; i < photo.length; i++) {
