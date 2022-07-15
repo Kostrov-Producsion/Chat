@@ -1630,22 +1630,22 @@
                 if (txt.querySelector('div')) {
                     txt.innerHTML = '';
                     var p = document.createElement('p');
-                    p.innerText = '~[ вложение ]~';
+                    p.innerHTML = '~[ вложение ]~';
                     txt.appendChild(p);
                 } else {
                     if (txt.innerHTML.length >= 40) { // важно проверять длинну именно по innerHTML, потому что содержание может быть не только текстовым
                         var text = txt.innerHTML.replace(/<br>+|&nbsp;+/g, '');
                         if (text[0] === '<') {
-                            txt.innerText = '~[ эмоджи ]~';
+                            txt.innerHTML = '~[ эмоджи ]~';
                         } else {
-                            txt.innerText = txt.innerText.trim().slice(0, 12) + '...';
+                            txt.innerHTML = txt.innerText.trim().slice(0, 12) + '...';
                         }
                     }
                 }
             },
             sliceTXTMembers(txt) {
                 if (txt.innerText.trim().length > 20) {
-                    txt.innerText = txt.innerText.trim().slice(0, 18) + '...';
+                    txt.innerHTML = txt.innerText.trim().slice(0, 18) + '...';
                 }
             },
             ScrollDownPage() {
