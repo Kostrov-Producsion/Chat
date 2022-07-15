@@ -20,7 +20,7 @@
                                     <li class="pull-right text-muted date-chat"><small v-html="chat.last_message.date_pub"></small></li>
                                 </div>
                                 <div v-else class="pull-right">
-                                    <li class="pull-right text-muted date-chat"><small>00 00 0000 00:00</small></li>
+                                    <li class="pull-right text-muted date-chat"><small></small></li>
                                 </div>
                                 <div class="chat-unread">
                                     <div v-if="chat.last_message" class="pull-right">
@@ -78,7 +78,7 @@
                         <li class="drop-left-padding">
                             <strong class="chat-members-list"></strong>
                         </li>
-                        <li class="pull-right text-muted date-chat"><small>00 00 0000 00:00</small></li>
+                        <li class="pull-right text-muted date-chat"><small></small></li>
                         <div class="chat-unread">
                             <li class="pull-right text-muted"><span class="badge" style="display: none">0</span></li>
                         </div>
