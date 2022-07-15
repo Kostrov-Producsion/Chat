@@ -703,8 +703,8 @@
                             var target = parent.querySelector('input[value="' + chat_json.txt_message_ban + '"]');
                             target.checked = true;
                         } else if (chat_json.txt_message_ban === null) {
-                            if (listFriendsChecked.querySelectorAll('.check-user').length === listHidFriend.length
-                                || checkActivateFriend.checked === false) {
+                            if (checkActivateFriend.checked === false ||
+                                listFriendsChecked.querySelectorAll('.check-user').length === listHidFriend.length) {
                                 checkActivateFriend.checked = false;
                                 listFriendsChecked.innerHTML = '';
                                 btnUpdate.style.display = 'none';
@@ -725,7 +725,7 @@
                         } else if (chat_json.txt_message_ban === 'Скрыть от некоторых друзей') {
                             listFriendsChecked.innerHTML = ''; // очищаем прошлый список
                             for (var i = 0; i < checkbox_hid.length; i++) {
-                                if (listHidFriend.includes(checkbox_hid[i].value)) {
+                                if (listHidFriend && listHidFriend.includes(checkbox_hid[i].value)) {
                                     checkbox_hid[i].checked = true;
                                     var clone = checkUser.cloneNode(true);
                                     clone.removeAttribute('style');
@@ -738,7 +738,7 @@
                                 }
                             }
                             // проверяем был выбор или нет
-                            if (listHidFriend.length !== 0) {
+                            if (listHidFriend && listHidFriend.length !== 0) {
                                 btnUpdate.style.display = 'block';
                                 btnCreate.style.display = 'none';
                                 listFriends.style.display = 'none';
