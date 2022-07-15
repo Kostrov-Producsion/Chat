@@ -1646,6 +1646,8 @@
             sliceTXTMembers(txt) {
                 if (txt.innerText.trim().length > 20) {
                     txt.innerHTML = txt.innerText.trim().replace(/<br>+|&nbsp;+/g, '').slice(0, 18) + '...';
+                } else {
+                    txt.innerHTML = txt.innerText.trim().replace(/<br>+|&nbsp;+/g, '');
                 }
             },
             ScrollDownPage() {
