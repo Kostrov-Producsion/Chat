@@ -1740,7 +1740,7 @@
                     var date_chat = chat.querySelector('.date-chat');
                     var author = chat.querySelector('.chat-list-author-message');
                     var message = chat.querySelector('.chat-message p');
-                    date_chat.innerText = '00 00 0000 00:00';
+                    date_chat.innerText = '';
                     author.innerText = '';
                     message.innerHTML = 'Сообщение было удалено';
                     var unread = chat.querySelector('.badge');
