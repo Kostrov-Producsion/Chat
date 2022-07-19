@@ -969,7 +969,11 @@
                 }
 
                 if (chat_name.innerText.length > 149) {
-                    chat_name.innerText = chat_name.innerText.slice(0, 150)  + '...'
+                    chat_name.innerText = chat_name.innerText.slice(0, 150) + '...';
+                } else if (this.mobile) {
+                    if (chat_name.innerText.length > 30) {
+                        chat_name.innerText = chat_name.innerText.slice(0, 32) + '...';
+                    }
                 }
 
                 var window_block_media = document.querySelector('.media-files-chat-body');
