@@ -1284,11 +1284,20 @@
                 var z = 3;
                 var left = 0;
                 for (var i = 0; i < move_avatar.length; i++) {
-                    move_avatar[i].style.position = 'absolute';
-                    move_avatar[i].style.zIndex = z;
-                    move_avatar[i].style.left = left + '%';
-                    z -= 1;
-                    left += 25;
+                    if (i < 4) {
+                        move_avatar[i].style.position = 'absolute';
+                        move_avatar[i].style.zIndex = z;
+                        z -= 1;
+                        if (this.mobile) {
+                            move_avatar[i].style.left = left + '%';
+                            left += 15;
+                        } else {
+                            move_avatar[i].style.left = left + '%';
+                            left += 25;
+                        }
+                    } else {
+                        move_avatar[i].style.display = 'none';
+                    }
                 }
             },
             CreateChecked() {
