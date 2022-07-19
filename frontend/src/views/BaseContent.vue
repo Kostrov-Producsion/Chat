@@ -1664,13 +1664,17 @@
                     var left = 0;
                     var bottom = 0;
                     for (var e = 0; e < avatars.length; e++) {
-                        avatars[e].style.position = 'absolute';
-                        avatars[e].style.zIndex = z;
-                        avatars[e].style.left = left + '%';
-                        avatars[e].style.bottom = bottom + '%';
-                        z -= 1;
-                        left += 25;
-                        bottom += 20;
+                        if (e < 3) {
+                            avatars[e].style.position = 'absolute';
+                            avatars[e].style.zIndex = z;
+                            avatars[e].style.left = left + '%';
+                            avatars[e].style.bottom = bottom + '%';
+                            z -= 1;
+                            left += 25;
+                            bottom += 20;
+                        } else {
+                            avatars[e].style.display = 'none';
+                        }
                     }
                 }
             },
