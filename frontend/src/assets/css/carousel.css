@@ -145,8 +145,13 @@ height:0;
 @media (max-width: 420px) {
   /* Navbar positioning foo */
 
+  body {
+      background-color: #FFFFFF;
+  }
+
   .navbar-wrapper {
     display: none;
+    background-color: #FFFFFF;
   }
     .mobile {
         display: block;
